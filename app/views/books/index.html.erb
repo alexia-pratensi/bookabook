@@ -1,0 +1,13 @@
+<h2>index</h2>
+
+<ul>
+  <% @books.each do |book| %>
+    <li><%= book.title %></li>
+    <li><%= book.description %></li>
+    <li><%= book.author %></li>
+    <li><%= book.year %></li>
+    <li><%= book.publisher %></li>
+    <li><%= book.price_per_day %></li>
+    <%= link_to 'réserver', book_path(book) %>
+  <% end %>
+</ul>
