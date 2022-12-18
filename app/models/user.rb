@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :books
 
-  validates :nickname, presence: true
+  # validates :nickname, presence: true
 end

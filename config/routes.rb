@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete "books/:id", to: "pages#destroy", as: :destroy_book
   delete "bookings/:id", to: "pages#destroy", as: :destroy_booking
 
-  resources :books do
+  resources :books, except: :index do
     resources :bookings, only: :create
   end
 

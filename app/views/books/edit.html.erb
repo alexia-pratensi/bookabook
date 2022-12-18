@@ -1,0 +1,11 @@
+<h2>Modification de ta livre mise en location</h2>
+
+<%= simple_form_for(@book) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :author %>
+  <%= f.input :year %>
+  <%= f.input :publisher %>
+  <%= f.input :price_per_day %>
+  <%= f.submit %>
+<% end %>
