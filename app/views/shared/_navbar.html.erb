@@ -18,7 +18,7 @@
             <%= link_to "Mon suivi", "#", class: "nav-link" %> <%# route vers dashboard plutot que home + ajout du current name %>
           </li>
           <li class="nav-item">
-            <%= link_to current_user.email, class: "nav-link" %> <%# affichage du name à la place de message + suppression link %>
+            <%= link_to current_user.nickname, class: "nav-link" %> <%# affichage du name à la place de message + suppression link %>
           </li>  <%# changement photo avatar %>
           <li class="nav-item dropdown">
             <%= image_tag "https://res.cloudinary.com/dlumucj7m/image/upload/v1671363030/photo_CV_fwwhqk.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
