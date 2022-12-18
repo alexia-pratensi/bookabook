@@ -1,13 +1,40 @@
-<h2>index</h2>
 
-<ul>
-  <% @books.each do |book| %>
-    <li><%= book.title %></li>
-    <li><%= book.description %></li>
-    <li><%= book.author %></li>
-    <li><%= book.year %></li>
-    <li><%= book.publisher %></li>
-    <li><%= book.price_per_day %></li>
-    <%= link_to 'réserver', book_path(book) %>
-  <% end %>
-</ul>
+<div class='container'>
+
+<%# text accroche %>
+  <div class="accroche">
+    <h3>Besoin d'un peu de lecture ?</h3>
+    <h3>Laisser vous tenter par les offres du moment</h3>
+  </div>
+
+<%# barre de recherche %>
+  <div class="my-5 mx-auto w-50">
+    <%= form_with url: books_path, method: :get, class: "d-flex " do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control bg-white",
+        placeholder: "Trouve un livre"
+      %>
+      <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+<%# card offre en location %>
+  <div class="grid-card">
+    <% @books.each do |book| %>
+      <div class="card-product">
+        <img src="#" />
+        <div class="card-product-infos">
+          <h2><strong><%= book.title %></strong></h2>
+          <p>Description: <%= book.description %></p>
+          <p>Auteur: <%= book.author %></p>
+          <p>Année: <%= book.year %></p>
+          <p>Editeur: <%= book.publisher %></p>
+          <p>Prix par jour: <%= book.price_per_day %></p>
+          <button><%= link_to 'réserver', book_path(book) %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
