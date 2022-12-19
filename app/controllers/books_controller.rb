@@ -13,6 +13,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -21,9 +22,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
 
     if @book.save
-      redirect_to book_path(@book)
+      redirect_to @book, notice: 'Ton livre a été enregistré avec succès !'
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,22 +36,15 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book= Book.find(params[:id])
+    @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to book_path(@book)
   end
-
-  def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
-    # No need for app/views/restaurants/destroy.html.erb
-    redirect_to dashbaord_path, status: :see_other
-  end
-
 
   private
 
   def book_params
     params.require(:book).permit(:title, :description, :author, :year, :publisher, :price_per_day, :photo)
   end
+
 end

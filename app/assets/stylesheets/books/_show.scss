@@ -5,3 +5,20 @@
   width: 100%;
   margin:auto;
 }
+
+.img-show {
+  margin-top: 80px;
+  margin-left: 50px;
+}
+
+.text-show {
+  padding-top: 80px;
+  padding-inline: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-dates {
+  display: flex;
+  flex-direction: row;
+}
