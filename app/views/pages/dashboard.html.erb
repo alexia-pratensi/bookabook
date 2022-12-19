@@ -1,2 +1,48 @@
-<h2>Vos réservations</h2>
-<h2>Vos biens en location </h2>
+<%= link_to "← Retour", root_path, class:"text-decoration-none text-dark ms-5 " %>
+<div class="container">
+  <h2 class="accroche">Vos réservations de livre</h2>
+
+  <div class="grid-card">
+      <% @bookings.each do |booking| %>
+        <div class="card-product">
+          <div class="photo-book">
+            <%if booking.book.photo.attached? %>
+              <%= cl_image_tag booking.book.photo.key %>
+            <% end %>
+          </div>
+          <div class="card-product-infos">
+            <h2><strong><%= booking.book.title %></strong></h2>
+            <p>Du <%=booking.starting_date %> au <%=booking.ending_date %></p>
+            <p><%= booking.book.description %></p>
+            <p>Prix par jour: <%= booking.book.price_per_day %> €</p>
+            <%= link_to 'modifier', book_path(booking.book), class: "btn btn-primary mt-3" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  <h2 class="accroche">Vos offres de livre</h2>
+
+  <div class="grid-card">
+      <% @books.each do |book| %>
+          <div class="card-product">
+            <div class="photo-book">
+              <%if book.photo.attached? %>
+                <%= cl_image_tag book.photo.key %>
+              <% end %>
+            </div>
+            <div class="card-product-infos">
+              <h2><strong><%= book.title %></strong></h2>
+              <p>Description: <%= book.description %></p>
+              <p>Auteur: <%= book.author %></p>
+              <p>Année: <%= book.year %></p>
+              <p>Editeur: <%= book.publisher %></p>
+              <p>Prix par jour: <%= book.price_per_day %> €</p>
+              <%= link_to 'Modifier', book_path(book), class: "btn btn-primary mt-3" %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+</div>

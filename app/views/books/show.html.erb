@@ -11,15 +11,30 @@
   <%# card show %>
   <div class="card-show">
     <%# photo %>
-    <div class="border">
+    <div class="img-show">
       <%if @book.photo.attached? %>
-        <%= cl_image_tag @book.photo.key %>
+        <%= cl_image_tag @book.photo.key, crop: :fill , height: 400 %>
       <% end %>
     </div>
     <%# contenu textuel %>
-    <div class="">
-
+    <div class="text-show">
+      <h5>Description</h5>
+      <br>
+      <%=@book.description%>
+      <%# réservation date %>
+      <div class="mt-5">
+        <%= simple_form_for [@book, @booking] do |f|%>
+          <div class="booking-dates">
+            <%= f.input :starting_date, as: :date, html5: true, label: 'De' %>
+            <%= f.input :ending_date, as: :date, html5: true, label: 'à' %>
+          </div>
+          <%= f.submit 'Réserver', class: "btn btn-primary"%>
+        <% end %>
+      </div>
     </div>
+
   </div>
+
+
 
 </div>

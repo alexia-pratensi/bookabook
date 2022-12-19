@@ -1,12 +1,14 @@
-<h2>Mise en location de ton livre</h2>
+<div class="container">
+  <h2 class="accroche">Mise en location de ton livre</h2>
+    <%= simple_form_for(@book) do |f| %>
+      <%= f.input :title, label: 'Titre', class: 'field'%>
+      <%= f.input :description, class: "bg-white", label: 'Description' %>
+      <%= f.input :author, label: 'Auteur', class: "bg-white" %>
+      <%= f.input :year, label: 'Année de publication', class: "bg-white" %>
+      <%= f.input :publisher,  label: 'Editeur', class: "bg-white" %>
+      <%= f.input :price_per_day,  label: 'Prix par jour', class: "bg-white" %>
+      <%= f.input :photo, as: :file,  label: 'La photo du livre', class: "bg-white" %>
+      <%= f.submit "Enregistrer", class: "btn btn-primary"%>
+    <% end %>
 
-<%= simple_form_for(@book) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :author %>
-  <%= f.input :year %>
-  <%= f.input :publisher %>
-  <%= f.input :price_per_day %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+</div>
