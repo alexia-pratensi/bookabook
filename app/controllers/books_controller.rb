@@ -36,22 +36,15 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book= Book.find(params[:id])
+    @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to book_path(@book)
   end
-
-  def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
-    # No need for app/views/restaurants/destroy.html.erb
-    redirect_to dashbaord_path, status: :see_other
-  end
-
 
   private
 
   def book_params
     params.require(:book).permit(:title, :description, :author, :year, :publisher, :price_per_day, :photo)
   end
+
 end
