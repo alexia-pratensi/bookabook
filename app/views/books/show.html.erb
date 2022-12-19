@@ -1,2 +1,25 @@
-<h2><%= @book.title %></h2>
-<h4><%= @book.price_per_day %> € par jour</h4>
+<%= link_to "← Retour", root_path, class:"text-decoration-none text-dark ms-5 " %>
+
+<div class='container mb-5'>
+
+  <%# Titre et prix %>
+  <div class="accroche">
+    <h3><%= @book.title %></h3>
+    <h4><%= @book.price_per_day %> € par jour</h4>
+  </div>
+
+  <%# card show %>
+  <div class="card-show">
+    <%# photo %>
+    <div class="border">
+      <%if @book.photo.attached? %>
+        <%= cl_image_tag @book.photo.key %>
+      <% end %>
+    </div>
+    <%# contenu textuel %>
+    <div class="">
+
+    </div>
+  </div>
+
+</div>

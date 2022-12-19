@@ -2,9 +2,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    # pour la barre de recherche
+
     if params[:query].present?
-      sql_query = "title ILIKE :query OR description ILIKE :query"
+      sql_query = "title ILIKE :query OR description ILIKE :query OR author ILIKE :query"
       @books = Book.where(sql_query, query: "%#{params[:query]}%")
     else
       @books = Book.all
@@ -50,6 +50,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :description, :author, :year, :publisher, price_per_day:, user_id:)
+    params.require(:book).permit(:title, :description, :author, :year, :publisher, :price_per_day, :photo)
   end
 end
