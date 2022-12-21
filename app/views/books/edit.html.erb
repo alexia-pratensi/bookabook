@@ -1,14 +1,17 @@
-<div class="container">
-  <h2 class="accroche">Modification de ta livre mise en location</h2>
-    <%= simple_form_for(@book) do |f| %>
-      <%= f.input :title, label: 'Titre', class: 'field'%>
-      <%= f.input :description, class: "bg-white", label: 'Description' %>
-      <%= f.input :author, label: 'Auteur', class: "bg-white" %>
-      <%= f.input :year, label: 'Année de publication', class: "bg-white" %>
-      <%= f.input :publisher,  label: 'Editeur', class: "bg-white" %>
-      <%= f.input :price_per_day,  label: 'Prix par jour', class: "bg-white" %>
-      <%= f.input :photo, as: :file,  label: 'La photo du livre', class: "bg-white" %>
-      <%= f.submit "Enregistrer", class: "btn btn-primary"%>
-    <% end %>
+<h2 class="accroche">Modification de ta livre mise en location</h2>
+<%= link_to "← Retour", root_path, class:"text-decoration-none text-dark ms-5 mt-2 mb-2 " %>
 
+<div class="container">
+  <div style="width: 60%" class="m-auto mt-3 mb-5">
+    <%= simple_form_for(@book) do |f| %>
+      <%= f.input :title, label: 'Titre', :input_html => { :class => 'bg-white' }%>
+      <%= f.input :description, label: 'Description', :input_html => { :class => 'bg-white' } %>
+      <%= f.input :author, label: 'Auteur', :input_html => { :class => 'bg-white' } %>
+      <%= f.input :year, label: 'Année de publication', :input_html => { :class => 'bg-white' } %>
+      <%= f.input :publisher,  label: 'Editeur', :input_html => { :class => 'bg-white' } %>
+      <%= f.input :price_per_day,  label: 'Prix par jour', :input_html => { :class => 'bg-white' } %>
+      <%= f.input :photo, as: :file,  label: 'La photo du livre', :input_html => { :class => 'bg-white' } %>
+      <%= f.submit "Valider la modification", class: "btn btn-primary button", :input_html => { :class => 'bg-white' }%>
+    <% end %>
+  </div>
 </div>

@@ -1,12 +1,8 @@
 
-<div class='container mb-5'>
-
   <%# text accroche %>
-  <div class="accroche">
-    <h3>Besoin d'un peu de lecture ?</h3>
-    <h3>Laisser vous tenter par les offres du moment à louer</h3>
-  </div>
-
+<div class="accroche">
+  <h3>Besoin d'un peu de lecture ?</h3>
+  <h3>Laisser vous tenter par les offres du moment à louer</h3>
   <%# barre de recherche %>
   <div class="my-5 mx-auto w-50">
     <%= form_with url: root_path, method: :get, class: "d-flex " do %>
@@ -18,7 +14,9 @@
       <%= submit_tag "Rechercher", class: "btn btn-primary" %>
     <% end %>
   </div>
+</div>
 
+<div class='container mb-5'>
   <%# card offre en location %>
   <div class="grid-card">
     <% @books.each do |book| %>
@@ -36,7 +34,7 @@
             <p>Année: <%= book.year %></p>
             <p>Editeur: <%= book.publisher %></p>
             <p>Prix par jour: <%= book.price_per_day %> €</p>
-            <%= link_to 'réserver', book_path(book), class: "btn btn-primary mt-2" %>
+            <%= link_to 'Plus de détails', book_path(book), class: "btn btn-primary button" %>
           </div>
         </div>
       <% end %>

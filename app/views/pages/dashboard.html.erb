@@ -1,33 +1,47 @@
-<%= link_to "← Retour", root_path, class:"text-decoration-none text-dark ms-5 " %>
+<h2 class="accroche">Mon espace</h2>
+<%= link_to "← Retour", root_path, class:"text-decoration-none text-dark ms-5 mt-2 mb-2 " %>
 <div class="container">
-  <h2 class="accroche">Vos réservations de livre</h2>
+  <h3 class="titre-dashboard">Vos réservations de livre</h3>
 
-  <div class="grid-card">
-      <% @bookings.each do |booking| %>
-        <div class="card-product">
-          <div class="photo-book">
-            <%if booking.book.photo.attached? %>
-              <%= cl_image_tag booking.book.photo.key %>
-            <% end %>
-          </div>
-          <div class="card-product-infos">
-            <h2><strong><%= booking.book.title %></strong></h2>
-            <p>Du <%=booking.starting_date %> au <%=booking.ending_date %></p>
-            <p><%= booking.book.description %></p>
-            <p>Prix par jour: <%= booking.book.price_per_day %> €</p>
-            <div class="icon-delete">
-              <%= link_to "🗑️", book_path(booking.book), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sur.e?"}, class: "supprimer"%>
+  <% if !@bookings.exists?() %>
+    <div class="no-booking">
+      <h5>Vous n'avez pas encore de réservation 🥲</h5>
+      <h6> Pour consultez nos offres, cliquer <%= link_to "ici", root_path%></h6>
+    </div>
+  <%else %>
+    <div class="grid-card">
+        <% @bookings.each do |booking| %>
+          <div class="card-product">
+            <div class="photo-book">
+              <%if booking.book.photo.attached? %>
+                <%= cl_image_tag booking.book.photo.key %>
+              <% end %>
+            </div>
+            <div class="card-product-infos">
+              <h2><strong><%= booking.book.title %></strong></h2>
+              <p>Du <%=booking.starting_date %> au <%=booking.ending_date %></p>
+              <p><%= booking.book.description %></p>
+              <p>Prix par jour: <%= booking.book.price_per_day %> €</p>
+              <div class="d-flex">
+                <%= link_to 'Modifier ma réservation',  edit_booking_path(booking), class: "btn btn-primary button" %>
+                <%= link_to "🗑️", destroy_booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sur.e?"}, class: "supprimer"%>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    <%end%>
+
+
+  <h3 class="titre-dashboard">Vos offres de livre</h3>
+
+  <% if !@books.exists?() %>
+    <div class="no-booking">
+      <h5>Vous n'avez pas encore d'annonce 🥲</h5>
+      <h6> Pour ajouter une offre, cliquer <%= link_to "ici", new_book_path%></h6>
     </div>
-
-
-
-  <h2 class="accroche">Vos offres de livre</h2>
-
-  <div class="grid-card">
+  <%else %>
+    <div class="grid-card">
       <% @books.each do |book| %>
           <div class="card-product">
             <div class="photo-book">
@@ -42,14 +56,13 @@
               <p>Année: <%= book.year %></p>
               <p>Editeur: <%= book.publisher %></p>
               <p>Prix par jour: <%= book.price_per_day %> €</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <%= link_to 'Modifier', edit_book_path(book), class: "btn btn-primary mt-3" %>
-                <div class="icon-delete">
-                  <%= link_to "🗑️", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sur.e?"}, class: "supprimer"%>
-                </div>
+              <div class="d-flex ">
+                <%= link_to 'Modifier mon offre', edit_book_path(book), class: "btn btn-primary button" %>
+                <%= link_to "🗑️", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sur.e?"}, class: "supprimer"%>
               </div>
             </div>
           </div>
         <% end %>
     </div>
+  <% end %>
 </div>

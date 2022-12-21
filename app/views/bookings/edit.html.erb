@@ -22,22 +22,22 @@
       <br>
       <%=@book.description%>
       <%# réservation date %>
-      <% if @book.user != current_user %>
+      <%# <% if @book.user != current_user %>
         <div class="mt-5">
-          <%= simple_form_for [@book, @booking] do |f|%>
+          <%= simple_form_for [@booking] do |f|%>
             <div class="booking-dates">
               <%= f.input :starting_date, as: :date, html5: true, label: 'De' %>
               <%= f.input :ending_date, as: :date, html5: true, label: 'à' %>
             </div>
-            <%= f.submit 'Réserver', class: "btn btn-primary"%>
+            <%= f.submit 'Modifier ma réservation', class: "btn btn-primary"%>
           <% end %>
-        <%else%>
-          <div class="d-flex">
-            <%= link_to 'Retour à mon espace',  dashboard_path, class: "btn btn-primary button" %>
-            <%= link_to 'Créer une autre annonce',  new_book_path, class: "btn btn-primary button" %>
-          </div>
+        <%# <%else%>
+          <%# <div class="d-flex"> %>
+            <%# <%= link_to 'Retour à mon espace',  dashboard_path, class: "btn btn-primary button" %>
+            <%# <%= link_to 'Créer une autre annonce',  new_book_path, class: "btn btn-primary button" %>
+          <%# </div> %>
         </div>
-      <%end%>
+      <%# <%end%>
     </div>
 
   </div>

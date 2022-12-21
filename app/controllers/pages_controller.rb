@@ -7,24 +7,19 @@ class PagesController < ApplicationController
   end
 
 
-  def destroy
+  def destroy_booking
+  @booking = Booking.find(params[:id])
+  @booking.destroy
+  redirect_to dashboard_path, status: :see_other
   # suppression des books créer
+  end
+
+  def destroy
   @book = Book.find(params[:id])
   @book.destroy
   redirect_to dashboard_path, status: :see_other
   # suppression des réservations faites
-  @booking = Booking.find(params[:id])
-  @booking.destroy
-  redirect_to dashboard_path, status: :see_other
   end
 
-  private
 
-  def book_params
-    params.require(:book).permit(:title, :description, :author, :year, :publisher, :price_per_day, :photo)
-  end
-
-  def booking_params
-    params.require(:booking).permit(:starting_date, :ending_date)
-  end
 end

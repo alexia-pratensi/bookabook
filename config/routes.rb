@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   root to: "books#index"
   get '/dashboard', to: "pages#dashboard"
   delete "books/:id", to: "pages#destroy", as: :destroy_book
-  delete "bookings/:id", to: "pages#destroy", as: :destroy_booking
+  delete "bookings/:id", to: "pages#destroy_booking", as: :destroy_booking
 
-  resources :books, except: :index do
+  resources :books do
     resources :bookings, only: :create
   end
 
-  resources :bookings, only: :destroy
+  resources :bookings, only: [:edit, :update]
 end
